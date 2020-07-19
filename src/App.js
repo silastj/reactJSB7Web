@@ -8,7 +8,7 @@ function formarNome(usuario){
 
 function App() {
   let name = "Silas Santos";
-  let img = 'http://www.google.com.br/google.jpg';
+  // let img = 'http://www.google.com.br/google.jpg';
 
   let usuario = {
     nome:'Amós Silas',
@@ -17,7 +17,7 @@ function App() {
   
   return (
     <div>
-      <img src={img} style={{marginLeft:"100px",maxWidth:50, height:50, objectFit:"contain", borderRadius:"50%",border:"1px solid red"}}/>
+      {/* <img src={img} style={{marginLeft:"100px",maxWidth:50, height:50, objectFit:"contain", borderRadius:"50%",border:"1px solid red"}}/> */}
       <h1>Usuario: {formarNome(usuario)}</h1>
       <h2>App é do: {name}</h2>
     </div>

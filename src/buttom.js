@@ -13,7 +13,7 @@ font-size:14px;
 // Passamos uma função para ele pegar a variação das cores e por default deixamos
 // a cor orange
 color:${props => props.color || 'orange'};
-background-color: ${props => props.ativo == true ? '#0000ff' : '#ccc'}
+background-color: ${props => props.ativo === true ? '#0000ff' : '#ccc'}
 `;
 
 function Button(){

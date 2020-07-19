@@ -15,8 +15,8 @@ const BtnP = styled(Btn)`
 function BtnA(){
     return (
         <>
-        <Btn>Color</Btn>
-        <BtnP>Color</BtnP>
+            <Btn>Color</Btn>
+            <BtnP>Color</BtnP>
         </>
     )
 }
