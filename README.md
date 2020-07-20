@@ -246,6 +246,29 @@ function Campos(){
 export default Campos;
 
 
+=> Condicional de Exibição
+
+3 formas ou mais de fazer:
+
+const [ logado, setLogado] = useState('');
+
+(1)
+ {email.length > 0 &&
+    <p>{email.length}Caractere{email.length > 1 ? 's' : ''}</p>
+ }
+
+(2)
+{logado == true &&
+    <button>Sair</button>
+}
+{
+logado == false &&
+    <button>Logar</button>
+}
+
+(3)  
+{logado ? <button>Sair</button> : <button>Logar</button>}
+
 
 
 
