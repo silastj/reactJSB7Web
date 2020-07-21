@@ -270,6 +270,104 @@ logado == false &&
 {logado ? <button>Sair</button> : <button>Logar</button>}
 
 
+=> HOOK useEffect(ciclo de vida) ou EffectHook
+
+Similar ao useState, mas com inicio meio e fim... quando ele é criado utilizado e destruido
+
+import React, { useState, useEffect } from 'react';
+
+Recebemos a função useEffect ela tras dois parametros:
+
+A primeira a função que vai executar e a segunda o observador
+
+ const [contagem, setContagem ] = useState(0);
+
+Primeiro parametro é afuncao logo enseguida do observador de variavel.
+    useEffect(() => {
+        document.title = 'Contagem:' + contagem;
+
+//Obeservador
+
+    }, [contagem]);
+    
+    function aumentarNumeros(){
+        setContagem(contagem +1);
+    } 
+
+    return (
+        <>    
+        <H1>Contagem: {contagem}</H1>   
+        <Button onClick={aumentarNumeros}>Clique</Button>
+
+Por final nos temos tres forma de fazer:
+(1) Quando for iniciado a pág
+(2) Quando quer observar uma variavel
+(3) Quando o componente é destruido e dá um return
+
+
+useEffect(() => {
+    if(contagem === 0){
+        document.title = "Começou:";
+    }else {
+        document.title = 'Contagem:' + contagem;       
+    }
+
+    return() => {
+        
+    };
+
+}, [contagem]);
+
+
+=> SEPARANDO OS COMPONENTES
+
+Criamos dentro da pasta SRC uma pasta components
+e criamos um arquivo com a letra inicial Maiscula
+obs: se não tiver frase ele traz uma frase default
+
+import React,{useState} from 'react';
+import styled from 'styled-components';
+
+const InputText = styled.input`
+    border:2px solid #000;
+    border-radius:5px;
+    padding:15px;
+    font-size:17px;
+    width:300px;
+`;
+
+function SearchBox(props) {
+    return(
+        <>
+        <InputText placeholder={props.frasePadrao ?? 'Frase Padrão'}/>
+        </>
+    );
+}
+
+NO ARQUIVO QUE RENDERIZA Podemos criar diversos componentes conforme abaixo:
+
+importamos ele:
+
+import SearchBox from './components/SearchBox';
+
+
+<SearchBox type="text" frasePadrao="Faça a sua busca..."/>
+      <SearchBox type="text" frasePadrao="Digite o seu CPF..."/>
+      <SearchBox type="text" />
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
 
 
 

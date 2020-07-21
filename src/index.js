@@ -10,10 +10,15 @@ import * as serviceWorker from './serviceWorker';
 import Button from './buttom';
 import New from './useStateA';
 import Campos from './campo';
+import SearchBox from './components/SearchBox';
 
 
 ReactDOM.render(
     <React.StrictMode>   
+      <SearchBox type="text" frasePadrao="Faça a sua busca..."/>
+      <SearchBox type="text" frasePadrao="Digite o seu CPF..."/>
+      <SearchBox type="text" />
+
       <Campos/>
       <New/>
       <Btn/> 

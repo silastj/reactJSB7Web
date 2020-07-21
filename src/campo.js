@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const Input = styled.input`
@@ -16,6 +16,11 @@ const H1 = styled.h1`
     font-size:36px;
     color:blue;
 `;
+const Button = styled.button`
+    width:100px;
+    height:48px;
+    border-radius:4px;
+`;
 
 
 function Campos(){
@@ -29,6 +34,26 @@ function Campos(){
     const [ valor1, setValor1 ] = useState('');
     const [ valor2, setValor2] = useState('');
 
+    const [contagem, setContagem ] = useState(0);
+
+
+    useEffect(() => {
+        if(contagem === 0){
+            document.title = "Começou:";
+        }else {
+            document.title = 'Contagem:' + contagem;       
+        }
+
+        return() => {
+            
+        };
+
+    }, [contagem]);
+
+
+    function aumentarNumeros(){
+        setContagem(contagem +1);
+    }
 
 
     const handleInput = (e) => {
@@ -36,7 +61,11 @@ function Campos(){
         }   
 
     return (
-        <>       
+        <>    
+        <H1>Contagem: {contagem}</H1>   
+        <Button onClick={aumentarNumeros}>Clique</Button>
+
+
         <H1>Calculadora de Gorjeta</H1>
         <Label>Digite o valor Total R$?</Label><br/>
         <Input type="number" value={valor1} onChange={(e)=> setValor1(parseFloat(e.target.value))}/><br/>
