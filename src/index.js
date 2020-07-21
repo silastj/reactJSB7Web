@@ -17,9 +17,7 @@ import Lista from './lista';
 ReactDOM.render(
     <React.StrictMode>   
       <Lista/>
-      <SearchBox type="text" frasePadrao="Faça a sua busca..."/>
-      <SearchBox type="text" frasePadrao="Digite o seu CPF..."/>
-      <SearchBox type="text" />      
+    
 
       <Campos/>
       <New/>
