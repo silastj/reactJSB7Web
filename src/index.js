@@ -11,13 +11,15 @@ import Button from './buttom';
 import New from './useStateA';
 import Campos from './campo';
 import SearchBox from './components/SearchBox';
+import Lista from './lista';
 
 
 ReactDOM.render(
     <React.StrictMode>   
+      <Lista/>
       <SearchBox type="text" frasePadrao="Faça a sua busca..."/>
       <SearchBox type="text" frasePadrao="Digite o seu CPF..."/>
-      <SearchBox type="text" />
+      <SearchBox type="text" />      
 
       <Campos/>
       <New/>
@@ -26,6 +28,9 @@ ReactDOM.render(
       <App />
       <ComponentesProps/>
       <Title name="Amós Silas Santos"/>
+
+
+
     </React.StrictMode>,
     document.getElementById('root')
 );

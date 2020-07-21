@@ -357,9 +357,70 @@ import SearchBox from './components/SearchBox';
 
 
 
+=> TROCANDO DADOS ENTRE COMPONENTES
 
+Troca de informções
+NO arquivo final onde renderiza
+
+Podemos alterar e incluir algo no componente e fazer a comunicação com a tela e o componente
+ou vice e versa
 
     
+
+
+=> EXIBIÇÃO DE LISTA
+
+Recendo uma lista de um array
+
+import React, { useState, useEffect } from "react";
+
+
+function Lista() {
+
+    const [ list, setList] = useState([]);
+
+        useEffect(()=> {
+            setList([
+                {title: "Comprar o bolo", done:false},
+                {title: "Pegar o cachorro no Petshop", done:true},
+                {title: "Gravar aula", done:false}
+            ]);
+        }, []);
+
+    return(
+
+        <>
+            <h1>Lista de Tarefas:</h1>
+               <ul>
+                    {list.map((item, index)=> (                  
+                      <li key={index}>{item.title}</li>                    
+                    ))}            
+               </ul> 
+            
+        </>
+    )
+}
+
+export default Lista;
+
+Ou podemos fazer uma condicção abaixo:
+       <h1>Tarefas feitas?</h1>
+               <ul>
+                   {list.map((item,index)=> (
+                       <li key={index}>
+                            {item.done &&
+                            <del>{item.title}</del>
+                            }
+                           {!item.done &&
+                           item.title
+                           }
+                       </li>
+                   ))}
+               </ul>
+
+
+=>ADICIONANDO NOVOS INTENS
+
 
 
 
