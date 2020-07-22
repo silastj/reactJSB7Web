@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -12,13 +12,17 @@ import New from './useStateA';
 import Campos from './campo';
 import SearchBox from './components/SearchBox';
 import Lista from './lista';
+import Local from './components/LocalStorage';
+import ModalOne from './components/Modal2';
+
+
 
 
 ReactDOM.render(
-    <React.StrictMode>   
+    <React.StrictMode>  
+      <ModalOne/>
+      <Local/> 
       <Lista/>
-    
-
       <Campos/>
       <New/>
       <Btn/> 

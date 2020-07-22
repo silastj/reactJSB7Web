@@ -421,13 +421,128 @@ Ou podemos fazer uma condicção abaixo:
 
 =>ADICIONANDO NOVOS INTENS
 
+uauau criamos uma função e adicionamos um evento de keyUp
+
+function SearchBox(props) {
+    const [ texto, setTexto ] =  useState('');
+
+    function handleKeyUp(e){
+        if(e.keyCode === 13){
+            if(props.onEnter){
+                props.onEnter( texto );                
+            }
+            setTexto('');
+        }
+    }
+
+    return(
+        <>
+        <InputText
+         placeholder={props.frasePadrao ?? 'Frase Padrão'}
+         type="text"
+         value={texto}
+         onKeyUp={handleKeyUp}
+         onChange={(e)=>setTexto(e.target.value)}
+         />
+         <p>{texto}</p>
+        </>
+    );
+}
 
 
 
+export default SearchBox;
+
+DENTRA DA FUNÇÃO LISTA E  JUNTO COM O USEEFECT, CRIAMOS OUTRA FUNCAO ARMAZENDO A LIST EM OUTRA VARIAVEL
+E SETANDO ELA NOVAMENTE NO RETURN
+
+ function addAction(newItem){
+            let newList = [...list, {title:newItem, done:false}];
+            setList(newList);
+        }
+
+PASSAMOS NO COMPONENTE UMA FUNCAO
+
+ <SearchBox type="text" frasePadrao="Faça a sua busca..."
+            onEnter={addAction}/>
+
+E ABAIXO PASSAMOS O MAP PARA DESCARREGAR A LISTA
+
+<ul>
+    {list.map((item, index)=> (                                          
+        <li key={index}>{item.title} é falso? R= {item.done.toString()}</li>                    
+    ))}            
+</ul> 
+
+<h1>Tarefas feitas?</h1>
+<ul>
+    {list.map((item,index)=> (
+        <li key={index}>
+            {item.done &&
+            <del>{item.title}</del>
+            }
+            {!item.done &&
+            item.title
+            }
+        </li>
+    ))}
+</ul>
+        
+
+=> MARCAR UM ITEM COMO FEITO OU NÃO FEITO
 
 
 
+Adicinamos uma fução anonima no li e pegamos o index de parametro
+  <Li key={index} onClick={()=>handleToggleDone(index)}>
 
+  
+
+Criamos a função passando o parametro na função armazemos o array list em uma variavel
+e invertemos com ! negação ( tracamos o false por true e vice versa) e setamos novamente o setList
+
+function handleToggleDone(index){
+    let newList = [ ...list ];
+
+    newList[index].done = !newList[index].done;
+
+    setList(newList);
+}
+
+
+=>LocalStorage
+
+Para setar um item no localStorage:
+Digititando no especionar aba console
+
+localStorage.setItem('name','Silas');
+Abaixo criamos um função a const está pegando os dados do localstorage
+useeffect está monitorando as alterações e setando no localstorage
+e no return tem o evento onchange que seta a variavel name e pega o valor do evento target
+
+
+function Local(){
+
+    const [ name, setName ] = useState(localStorage.getItem('name'));
+
+    useEffect(()=> {
+
+        localStorage.setItem('name', name);
+    }, [name]);
+
+    return(
+        <>
+        <input type="text" value={name} onChange={e=>setName(e.target.value)}/>
+        Nome Alterado:{name};
+
+
+        </>
+    );
+}
+
+
+
+=> MODAL
 
 
 
