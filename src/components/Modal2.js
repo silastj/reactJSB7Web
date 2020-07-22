@@ -19,7 +19,7 @@ function ModalOne() {
 
     return(
             <>
-            <Button onClick={handleButtonClick}>Modal</Button>
+            <Button onClick={handleButtonClick}>Abrir Modal</Button>
             <Modal visible={modalVisible} setVisible={setModalVisible}>            
                     <h1>Testando 123...</h1>          
             </Modal> 

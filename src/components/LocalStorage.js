@@ -13,7 +13,7 @@ function LocalStorage(){
     return(
         <>
         <input type="text" value={name} onChange={e=>setName(e.target.value)}/>
-        Nome:{name};
+        Nome Armazenado no LocalStorage:{name}
 
 
         </>

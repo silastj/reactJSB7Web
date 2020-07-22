@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import ModalOne from './Modal2';
 
 const ModalBackGround = styled.div`
     position:fixed;

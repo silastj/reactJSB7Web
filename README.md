@@ -544,7 +544,87 @@ function Local(){
 
 => MODAL
 
+Criei dois arquivos (  Modal.js / Modal2.js )
 
+
+
+const ModalBackGround = styled.div`
+    position:fixed;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    z-index:90;
+    background-color:rgba(0,0,0,0.7);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+`;
+const ModalArea = styled.div`
+    background-color:#ffffff;
+    padding:10px;
+`;
+
+
+function Modal(props) {
+   
+    const handleBackgroundClick = () =>{
+        props.setVisible(false);
+    }
+
+
+    return(
+        <>
+            {props.visible === true &&
+                <ModalBackGround onClick={handleBackgroundClick}>
+                <ModalArea>
+                {props.children} 
+                </ModalArea>
+            </ModalBackGround>           
+            }
+               
+        </>  
+     
+    );
+
+    
+}
+
+
+export default Modal;
+
+
+Modal2.js
+
+import Modal from './Modal';
+
+const Button = styled.button`
+    width:100px;
+`;
+
+
+
+
+function ModalOne() {
+
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const handleButtonClick = () => {
+        setModalVisible(true);
+    }
+
+    return(
+            <>
+            <Button onClick={handleButtonClick}>Modal</Button>
+            <Modal visible={modalVisible} setVisible={setModalVisible}>            
+                    <h1>Testando 123...</h1>          
+            </Modal> 
+           
+            </>
+    );
+}
+
+export default ModalOne;
 
 
 
