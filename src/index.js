@@ -14,12 +14,14 @@ import SearchBox from './components/SearchBox';
 import Lista from './lista';
 import Local from './components/LocalStorage';
 import ModalOne from './components/Modal2';
+import Base from './Base';
 
 
 
 
 ReactDOM.render(
     <React.StrictMode>  
+      <Base/>
       <ModalOne/>
       <Local/> 
       <Lista/>

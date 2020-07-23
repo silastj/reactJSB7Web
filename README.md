@@ -626,6 +626,31 @@ function ModalOne() {
 
 export default ModalOne;
 
+=> ROUTER ( ROTAS )
+
+$ npm install react-router-dom
+
+Usuaremos o Base.js como base hehe ( ele é bem separado)
+
+import {BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+
+Precisamos criar dentro da tag abaixo o conteudo para funcionar o router
+  <BrowserRouter>
+
+  TROCANDO DE PAG , a rota será dentro da tag SWITCH
+  <Switch>
+                <Route exact path="/">
+                    <Home/>
+                </Route>
+                <Route path="/sobre">
+                    <Sobre/>
+                </Route>
+</Switch>
+
+Obs: o exact é a mesma coisa que exact={true}
+
+
+
 
 
 
