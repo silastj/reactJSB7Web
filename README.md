@@ -648,6 +648,52 @@ Precisamos criar dentro da tag abaixo o conteudo para funcionar o router
 </Switch>
 
 Obs: o exact é a mesma coisa que exact={true}
+Podemos colocar nas outras rotas o exact mas não tem necessidade
+
+=> PARAMETROS NA URL
+
+iremos criar o Categoria.js
+
+import React from 'react';
+import { useParams } from 'react-router-dom';
+
+
+function Categoria() {
+
+    let {cat} = useParams();
+
+    return(
+        <div>
+            <h4>Página Categoria</h4>
+            <p>Exibindo itens da categoria: {cat}</p>
+        </div>
+    );
+}
+
+export default Categoria;
+
+Na Base criamos mais links abaixo:
+
+<li><Link to="/categoria/esporte">Esporte</Link></li>
+<li><Link to="/categoria/comida">Comida</Link></li>
+<li><Link to="/categoria/filme">Filme</Link></li>
+
+
+E criamos essa rota
+
+<Route path="/categoria/:cat">
+    <Categoria/>
+</Route>     
+
+Obs: chamamos o useParams() e declaramos o cat e chamamos o useParams() e passamos ele no retorno
+Mas na base.js passamos tambem o {cat}
+
+<Route path="/categoria/:cat">
+    <Categoria/>
+</Route>    
+
+
+=> ROUTER QUERY
 
 
 
