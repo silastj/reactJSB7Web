@@ -791,6 +791,121 @@ Criaremos uma rota com a condição abaixo:
 Temos outra forma de criar a rota privada , porem mais complexa usando o:
 children e .... rest e antes criando um component de rota privada.<PrivateRoute>
 
+=>Conceito de Estado Global REDUX
+Temos o useState mas precisamos ter o estado global
+
+=> Redux: Introdução
+Biblioteca redux e a integração do react e redux
+npm install redux react-redux
+
+
+=> Redux funciona 
+( Store , Reducers , Actions )
+Store => um local especifico onde fica todos os dados do Redux em partes
+Reducers => cada reducers lembrando que podemos ter varios, eu guardo informacções de algo especifico e jogo no Store
+Actions => São ações Trocar nome, eu mando para a action trocar o nome e ela manda pro reducers
+
+Iremos chamar ele antes de tudo ( no index.js)
+
+O Provider é a caixinha da aplicação
+
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+
+declaro uma const com a funçã createStore(aqui dentro eu passo os reducers)
+DEpois criaremos a tag Providere e passamos o store  conforme abaixo
+
+
+ReactDOM.render(
+  <Provider store={store}>
+    <React.StrictMode>  
+      <Base/>
+    </React.StrictMode>
+  </Provider>,
+    document.getElementById('root')
+);
+
+serviceWorker.unregister();
+
+Criaremos uma pasta dentro do SRC uma pasta reducers e um arquivo UsuarioReducer.js
+Primeiro criaremos uma funcção que se passa dois parametros
+o primeiro é o state que é default o primeiro parametro
+o segundo é a action
+
+Criaremos a const da primeira parametro
+e passamos a state name recebendo vazio
+
+Dentro da função criaremos um switch e com retorno com dois parametro
+o primeiro ele traz o state e depois ele altera a action
+
+Criaremos uma pasta dentro de reducers e criaremos um arquivo index.js
+Ele se junta todos os reducers ( combine )
+Darei um nome para ele como usuario, mas podemos deixar sem e colocar ele direto
+
+
+import { combineReducers } from 'redux';
+import UsuarioReducer from  './UsuarioReducer';
+
+export default combineReducers({
+    usuario: UsuarioReducer 
+});
+
+chamado a pasta abaixo:
+import Reducers from './reducers';
+
+é a mesma coisa se chamar com o index
+import Reducers from './reducers/index';
+
+
+=> Redux: Connect e Dispatch
+
+Puxar as informa do reducer na tela 
+import { connect} from 'react-redux';
+
+usaremos no fim da pagina
+
+colocaremos esse abaixo
+export default connect()(Home);
+
+e tiramos esse abaixo:
+export default Home;
+
+Passamos a props na função geral da página como parametro
+
+dentro do return chamamos a props
+ return(
+        <div>
+            <h4>Página Home</h4>
+            NOME: {props.name}
+
+            <br/>
+            <br/>
+            <button onClick={handleButton}>Ir para a página SOBRE</button>
+        </div>
+    );
+
+E abaixo:
+declaramos uma const que está mapeando a state name com o apelido que dei para o reducer pegando o nome name
+Depois passamoso mapStateToProps no export default
+
+const mapStateToProps = (state) => {
+    return {
+        name: state.usuario.name
+    }
+};
+export default connect(mapStateToProps)(Home);
+
+
+Criaremos o Action
+ele recebe uma parametro função dispatch
+return tambem um objeto
+criaremos uma funcao que será passada por parametro
+
+
+
+
+
+
 
 
 
