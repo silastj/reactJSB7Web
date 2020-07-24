@@ -900,6 +900,75 @@ Criaremos o Action
 ele recebe uma parametro função dispatch
 return tambem um objeto
 criaremos uma funcao que será passada por parametro
+Obs: sobre funções do button criaremos na mesma página sempre abaixo do import
+
+=>Redux: Em várias telas
+
+importamos o connect
+import { connect} from 'react-redux';
+
+Criaremos o connect e o dispatch
+const mapStateToProps = (state) => {
+    return {
+        name: state.usuario.name
+    }
+}
+
+const mapDispatchToProps = dispatch => ({
+    setName: (newName) =>  dispatch ({
+        type: 'SET_NAME',
+        payload: {name: newName }
+    })
+});
+
+export default connect(mapStateToProps,mapDispatchToProps )(Login);
+
+E por fim passaremos a props na função pai
+
+=> Redux com Hooks 
+import { useSelector } from 'react-redux';
+
+e agora usamos da forma mais simples: 
+fazendo a parte do connect
+
+    const name = useSelector(state => state.usuario.name);
+    const contador = useSelector(state => state.usuario.contador);
+
+
+NOME: {name}<br/>
+CONTAGEM: {contador}
+
+fazendo a parte do dispatch
+import { useSelector, useDispatch} from 'react-redux';
+
+guardamos a funcão na const abaixo
+
+ const dispatch = useDispatch();
+
+e nas funções usaremos assim:
+
+const handleSilas = () => {
+        dispatch({
+            type: "SET_NAME",
+            payload: {name: 'Silas'}
+        });
+    };
+
+    const FunctionSomar = () => {
+        dispatch({
+            type:'INCREMENTER_CONTADOR'
+        })
+    };
+
+e segue o export default padrao:
+export default Home;
+
+=>Redux: Persistir Dados
+
+
+
+
+
 
 
 

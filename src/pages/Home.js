@@ -1,10 +1,18 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { connect} from 'react-redux';
+// import { connect} from 'react-redux';
+import { useSelector, useDispatch} from 'react-redux';
+
 
 function Home(props) {
-
     let history = useHistory();
+
+    const dispatch = useDispatch();
+
+    const name = useSelector(state => state.usuario.name);
+    const contador = useSelector(state => state.usuario.contador);
+
+    
 
     const handleButton = () => {
         // Replace é mudar o historico para sobre
@@ -15,18 +23,26 @@ function Home(props) {
     };
 
     const handleSilas = () => {
-        props.setName('Silas');
+        dispatch({
+            type: "SET_NAME",
+            payload: {name: 'Silas'}
+        });
     };
 
     const FunctionSomar = () => {
-        props.somar();
+        dispatch({
+            type:'INCREMENTER_CONTADOR'
+        })
     };
 
     return(
         <div>
             <h4>Página Home</h4>
-            NOME: {props.name}<br/>
-            CONTAGEM: {props.contador}
+            {/* NOME: {props.name}<br/>
+            CONTAGEM: {props.contador} */}
+
+            NOME: {name}<br/>
+            CONTAGEM: {contador}
 
 
 
@@ -41,25 +57,27 @@ function Home(props) {
     );
 }
 
-const mapStateToProps = (state) => {
-    return {
-        name: state.usuario.name,
-        contador: state.usuario.contador
-    }
-};
+export default Home;
 
-const mapDispatchToProps = (dispatch) => {
-    return{
-        setName: (newName) => dispatch({
-            type: 'SET_NAME',
-            payload: { name:newName}
-        }),
-        somar: () => dispatch({
-            type: 'INCREMENTER_CONTADOR'
-        })
-    }
-};
+// const mapStateToProps = (state) => {
+//     return {
+//         name: state.usuario.name,
+//         contador: state.usuario.contador
+//     }
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+// const mapDispatchToProps = (dispatch) => {
+//     return{
+//         setName: (newName) => dispatch({
+//             type: 'SET_NAME',
+//             payload: { name:newName}
+//         }),
+//         somar: () => dispatch({
+//             type: 'INCREMENTER_CONTADOR'
+//         })
+//     }
+// };
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Home);
 
 
