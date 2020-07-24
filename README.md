@@ -693,7 +693,114 @@ Mas na base.js passamos tambem o {cat}
 </Route>    
 
 
-=> ROUTER QUERY
+=> ROUTER QUERY( Paracido com parametros, outra forma de fazer)
+
+Chamamos 
+import { useParams, useLocation } from 'react-router-dom';
+
+// Criacao do hook 
+function useQuery(){
+    return new URLSearchParams(useLocation().search );
+}
+// Criacao do hook 
+
+function Categoria() {
+
+    // let {cat} = useParams();
+
+    let query = useQuery();
+
+    let cat = query.get('tipo');
+
+    return(
+        <div>
+            <h4>Página Categoria</h4>
+            <p>Exibindo itens da categoria: {cat}</p>
+        </div>
+    );
+}
+
+export default Categoria;
+
+Já na base mudamos os links
+
+<li><Link to="/categoria?tipo=esporte">Esporte</Link></li>
+<li><Link to="/categoria?tipo=comida">Comida</Link></li>
+<li><Link to="/categoria?tipo=filme">Filme</Link></li>
+
+
+=> ROUTER: Erro 404
+Ele segue a ordem das routas de cima para baixo
+Criamos um componente novo e criamos uma rota nova com path="*"
+ <Route path="*">
+    <Erro/>
+ </Route>      
+
+
+=> ROUTER: Redirect ( Redirecionamento duas formas destintas( uma forma de ação e outra de condição )
+import {BrowserRouter, Switch, Route, Link, Redirect} from 'react-router-dom';
+FORMA DE AÇÃO:
+Criaremos um route e redirecionamos para outra page conforme baixo:
+<Route path="/quem-somos">
+    <Redirect to="/sobre"/>
+</Route>
+
+FORMA DE CONDIÇÃO:
+Na pagina HOME
+import { useHistory } from 'react-router-dom';
+
+Criei um button uma função e armazei o hook useHistory em uma variavel e lá modifiquei em replace para a pagina sobre, com um tempo de 2 segundos usando setTimeout
+
+
+function Home() {
+
+    let history = useHistory();
+
+    const handleButton = () => {
+        // Replace é mudar o historico para sobre
+        setTimeout(()=> {
+            history.replace('/sobre');
+        }, 2000)
+        
+    };
+
+    return(
+        <div>
+            <h4>Página Home</h4>
+            <button onClick={handleButton}>Ir para a página SOBRE</button>
+        </div>
+    );
+}
+
+export default Home;
+
+=> Router: Rotas Privadas (Controle de acesso)
+Teremos páginas publica que tera acesso publico para todos usuarios
+Teremos páginas privadas para pessoas que fez o login
+
+Criaremos um const que não está logado:
+
+const isLogged = false;
+
+Criaremos uma rota com a condição abaixo:
+
+<Route path="/privada">
+    {isLogged ? <Privada/> : <Redirect to="/login" />}
+</Route>
+
+Temos outra forma de criar a rota privada , porem mais complexa usando o:
+children e .... rest e antes criando um component de rota privada.<PrivateRoute>
+
+
+
+
+
+
+
+
+
+
+
 
 
 

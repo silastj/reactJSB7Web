@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import {BrowserRouter, Switch, Route, Link, Redirect} from 'react-router-dom';
 
 import Home from './pages/Home';
 import Sobre from './pages/Sobre';
@@ -16,7 +16,12 @@ import ModalOne from './components/Modal2';
 import Title from './title';
 import ComponentesProps from './ComponentesProps';
 import Categoria from './pages/Categoria';
+import Erro from './components/Erro';
+import Privada from './pages/Privada';
+import Login from './pages/Login';
 
+
+const isLogged = false;
 
 function Base(){
     return(
@@ -27,9 +32,14 @@ function Base(){
                 <ul>
                     <li> <Link to="/">Home</Link></li>
                     <li><Link to="/sobre">Sobre</Link></li>
-                    <li><Link to="/categoria/esporte">Esporte</Link></li>
+                    <li><Link to="/quem-somos">Quem Somos</Link></li>
+                    <li><Link to="/privada">Privada</Link></li>
+                    {/* <li><Link to="/categoria/esporte">Esporte</Link></li>
                     <li><Link to="/categoria/comida">Comida</Link></li>
-                    <li><Link to="/categoria/filme">Filme</Link></li>
+                    <li><Link to="/categoria/filme">Filme</Link></li> */}
+                    <li><Link to="/categoria?tipo=esporte">Esporte</Link></li>
+                    <li><Link to="/categoria?tipo=comida">Comida</Link></li>
+                    <li><Link to="/categoria?tipo=filme">Filme</Link></li>
                 </ul>
             </nav>
             </header>
@@ -38,6 +48,9 @@ function Base(){
             <Switch>
                 <Route exact path="/">
                     <Home/>
+                </Route>
+                <Route  path="/login">
+                    <Login/>
                 </Route>
                 <Route path="/sobre">
                     <Sobre/>
@@ -52,9 +65,22 @@ function Base(){
                     <ComponentesProps/>
                     <Title name="Amós Silas Santos"/>
                 </Route>
-                <Route path="/categoria/:cat">
+                
+                {/* <Route path="/categoria/:cat">
                     <Categoria/>
-                </Route>          
+                </Route>  */}
+                <Route path="/quem-somos">
+                    <Redirect to="/sobre"/>
+                </Route>
+                <Route path="/privada">
+                   {isLogged ? <Privada/> : <Redirect to="/login" />}
+                </Route>
+                <Route path="/categoria/">
+                    <Categoria/>
+                </Route>    
+                <Route path="*">
+                    <Erro/>
+                </Route>      
             </Switch>
 
 
